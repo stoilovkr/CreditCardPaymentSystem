@@ -26,7 +26,7 @@ namespace CreditCardPaymentApi.Controllers
         /// </summary>
         /// <param name="creditCardPaymentRequest"></param>
         /// <returns>A credit card payment request.</returns>
-        /// <response code="202">Empty json response.</response>
+        /// <response code="202">Empty response.</response>
         /// <response code="400">If the request is invalid.</response>
         /// <response code="500">If the message queue broker connection is broken.</response>
         [HttpPost]
