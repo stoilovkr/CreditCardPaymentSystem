@@ -6,3 +6,4 @@ The api is setup to run with https. You need to generate a local self signed cer
 https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide
 
 On docker-compose startup, the api and the processor are waiting on rabbitmq to be fully active before they start. This can take significant delay on startup.
+After everything is fully started, the api is listening for https requests on https://localhost:5001/. Use /swagger for OpenApi interface.
