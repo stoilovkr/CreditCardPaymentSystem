@@ -1,5 +1,5 @@
 # Credit card payment system
-Pub-sub system that accepts credit card payments via rest and then posts them to a rabbit message queue. Later they are consumed by another service and saved into database.
+Pub-sub system that accepts credit card payments via rest and then posts them to a RabbitMQ queue. Later they are consumed by another service and saved into database.
 
 To run locally with docker-compose:
 The api is setup to run with https. You need to generate a local self signed certificate named aspnet.pfx, and the password set to 'password'.
