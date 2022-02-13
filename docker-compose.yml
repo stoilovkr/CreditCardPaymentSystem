@@ -14,9 +14,9 @@ services:
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
+      interval: 10s
+      timeout: 3s
+      retries: 6
 
   credit-card-payment-api:
     image: credit-card-payment-api
