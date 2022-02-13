@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.9
+    container_name: 'rabbitmq'
+    networks:
+      - backend
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  credit-card-payment-api:
+    image: credit-card-payment-api
+    container_name: 'credit-card-payment-api'
+    build:
+      context: .
+      dockerfile: CreditCardPaymentApi/Dockerfile
+    depends_on: 
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - RabbitMQ__MessageBroker__ConnectionString=rabbitmq
+      - RabbitMQ__MessageBroker__ConnectionMaxRetries=3
+      - RabbitMQ__MessageBroker__ChannelMaxRetries=3
+      - RabbitMQ__MessageQueue__Name=dev_credit_card_payment_message_queue
+      - RabbitMQ__MessageQueue__Durable=false
+      - RabbitMQ__MessageQueue__Exclusive=false
+      - RabbitMQ__MessageQueue__AutoDelete=false
+      - RabbitMQ__MessageQueue__Arguments=null
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    networks:
+      - backend
+
+  credit-card-payment-processor:
+    image: credit-card-payment-processor
+    container_name: 'credit-card-payment-processor'
+    build:
+      context: .
+      dockerfile: CreditCardPaymentProcessor/Dockerfile
+    depends_on: 
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RabbitMQ__MessageBroker__ConnectionString=rabbitmq
+      - RabbitMQ__MessageBroker__ConnectionMaxRetries=3
+      - RabbitMQ__MessageBroker__ChannelMaxRetries=3
+      - RabbitMQ__MessageQueue__Name=dev_credit_card_payment_message_queue
+      - RabbitMQ__MessageQueue__Durable=false
+      - RabbitMQ__MessageQueue__Exclusive=false
+      - RabbitMQ__MessageQueue__AutoDelete=false
+      - RabbitMQ__MessageQueue__Arguments=null
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend

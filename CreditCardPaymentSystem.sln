@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardPaymentApi", "CreditCardPaymentApi\CreditCardPaymentApi.csproj", "{BA90BDBF-748F-4AA7-8A44-0D5014EE584B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardPaymentProcessor", "CreditCardPaymentProcessor\CreditCardPaymentProcessor.csproj", "{DD1FF1C8-0F52-451F-AD93-6B94308C52CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{165C6EE0-CB46-46E0-AE05-CD96766397B4}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA90BDBF-748F-4AA7-8A44-0D5014EE584B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA90BDBF-748F-4AA7-8A44-0D5014EE584B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA90BDBF-748F-4AA7-8A44-0D5014EE584B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA90BDBF-748F-4AA7-8A44-0D5014EE584B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1FF1C8-0F52-451F-AD93-6B94308C52CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1FF1C8-0F52-451F-AD93-6B94308C52CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1FF1C8-0F52-451F-AD93-6B94308C52CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1FF1C8-0F52-451F-AD93-6B94308C52CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7D685EB-4FA3-45E6-AAC8-155DBF4E9131}
+	EndGlobalSection
+EndGlobal
